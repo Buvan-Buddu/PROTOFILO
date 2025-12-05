@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BUVANRAJ V — Portfolio</title>
+
+  <!-- Fonts + Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root{
+      --bg-1:#0b0710;
+      --bg-2:#0f0514;
+      --accent-pink: #ff4db8;
+      --accent-blue: #6be0ff;
+      --glass: rgba(255,255,255,0.04);
+      --muted: rgba(255,255,255,0.65);
+      --card-radius: 18px;
+      --glow: 0 8px 40px rgba(179, 47, 158, 0.18);
+      --neon: 0 0 18px rgba(255,77,184,0.35), 0 0 36px rgba(107,224,255,0.08);
+      --pink-point: #ff6fc6;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 10% 20%, rgba(107,224,255,0.04), transparent 12%),
+                  radial-gradient(900px 500px at 90% 80%, rgba(255,77,184,0.03), transparent 10%),
+                  linear-gradient(180deg, var(--bg-1), var(--bg-2));
+      color: #f7f7fb;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:48px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:24px;
+    }
+
+    /* Main container */
+    .card {
+      width: min(980px, 96%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: var(--card-radius);
+      padding: 36px;
+      box-shadow: var(--glow);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.04);
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap: 28px;
+      align-items:center;
+      backdrop-filter: blur(6px) saturate(120%);
+    }
+
+    /* Decorative neon shapes */
+    .card::before,
+    .card::after{
+      content: "";
+      position:absolute;
+      border-radius:50%;
+      filter: blur(80px);
+      opacity: 0.55;
+      pointer-events:none;
+    }
+    .card::before{
+      width:480px;height:480px;
+      background: linear-gradient(45deg, var(--accent-blue), transparent 40%);
+      right:-140px; top:-120px;
+      transform: rotate(14deg);
+    }
+    .card::after{
+      width:380px;height:380px;
+      background: linear-gradient(120deg, var(--accent-pink), transparent 40%);
+      left:-140px; bottom:-160px;
+      transform: rotate(-10deg);
+    }
+
+    .left {
+      padding-right:6px;
+    }
+
+    /* Header */
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.6px;
+      margin:0 0 8px 0;
+      color: #fff;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.6);
+    }
+    .title {
+      margin:0 0 18px 0;
+      color: var(--muted);
+      font-size: 14px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    /* School / College list with pink bullet */
+    .edu {
+      list-style:none;
+      padding:0;
+      margin: 18px 0 26px 0;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .edu li{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      font-weight:500;
+      color:#f0edf6;
+      font-size:15px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.015), transparent);
+      padding:12px 14px;
+      border-radius:12px;
+      border: 1px solid rgba(255,255,255,0.02);
+    }
+    .edu li .point {
+      width:12px;height:12px;border-radius:50%;
+      background: linear-gradient(180deg, var(--pink-point), var(--accent-pink));
+      box-shadow: 0 6px 18px rgba(255,77,184,0.18), 0 0 8px rgba(255,77,184,0.08);
+      flex:0 0 12px;
+    }
+    .edu li .meta{
+      display:flex;
+      flex-direction:column;
+      line-height:1;
+    }
+    .edu li .meta .label{font-size:12px;color:var(--muted)}
+    .edu li .meta .value{font-size:14px;font-weight:600;color:#fff}
+
+    /* Social / contact */
+    .contact {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-bottom: 22px;
+    }
+    .icon-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:12px;
+      text-decoration:none;
+      color:#fff;
+      font-weight:600;
+      font-size:14px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), transparent);
+      border: 1px solid rgba(255,255,255,0.03);
+      box-shadow: var(--neon);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .icon-btn i{
+      display:inline-grid;
+      place-items:center;
+      width:36px;height:36px;border-radius:10px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+      font-size:16px;
+      color: var(--accent-pink);
+      transition: transform .18s ease;
+    }
+    .icon-btn:hover{
+      transform: translateY(-6px);
+      box-shadow: 0 18px 60px rgba(0,0,0,0.45), var(--neon);
+    }
+    .icon-btn:hover i{ transform: rotate(-6deg) scale(1.02) }
+
+    /* Right column: profile card */
+    .right {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 14px;
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,0.03);
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      align-items:center;
+      justify-content:center;
+    }
+    .avatar {
+      width:120px;height:120px;border-radius:20px;
+      background: conic-gradient(from 140deg, rgba(107,224,255,0.08), rgba(255,77,184,0.06));
+      border: 1px solid rgba(255,255,255,0.04);
+      display:grid;
+      place-items:center;
+      font-size:38px;
+      font-weight:700;
+      color:#fff;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6), var(--neon);
+    }
+    .badge {
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), transparent);
+      border: 1px solid rgba(255,255,255,0.03);
+      font-weight:600;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Resume button */
+    .resume-btn{
+      margin-top:10px;
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      padding:12px 18px;
+      border-radius:12px;
+      text-decoration:none;
+      color:#0b0710;
+      background: linear-gradient(90deg, var(--accent-pink), var(--accent-blue));
+      font-weight:700;
+      box-shadow: 0 12px 38px rgba(107,224,255,0.06), 0 6px 18px rgba(255,77,184,0.08);
+      transform: translateZ(0);
+    }
+    .resume-btn i{ font-size:18px; color:#fff; background:transparent; }
+
+    /* small details */
+    .subtitle{ color:var(--muted); font-size:13px; margin-bottom:6px; }
+    .about{
+      color: #dfe8f7;
+      font-size:14px;
+      line-height:1.6;
+      margin-top:6px;
+    }
+
+    /* Footer small */
+    .foot{
+      margin-top:18px;color:var(--muted);font-size:13px;display:flex;gap:12px;align-items:center;
+    }
+
+    /* responsive */
+    @media (max-width:900px){
+      .card{ grid-template-columns: 1fr; padding:24px; gap:18px; }
+      .right{ order:-1; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="profile-name">
+    <section class="left" aria-label="Profile information">
+      <h1 id="profile-name" class="name">BUVANRAJ V</h1>
+      <p class="title">Student • Aspiring Developer • Problem Solver</p>
+
+      <ul class="edu" aria-label="Education">
+        <li>
+          <span class="point" aria-hidden="true"></span>
+          <div class="meta">
+            <span class="label">School</span>
+            <span class="value">KONGU MATRICULATION HR SEC SCHOOL</span>
+          </div>
+        </li>
+
+        <li>
+          <span class="point" aria-hidden="true"></span>
+          <div class="meta">
+            <span class="label">College</span>
+            <span class="value">R.M.K. ENGINNERING COLLEGE</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="subtitle">Contact & profiles</div>
+      <div class="contact">
+        <!-- Email -->
+        <a class="icon-btn" href="mailto:rajbuavn66@gmail.com" title="Email BUVANRAJ">
+          <i class="fa-solid fa-envelope"></i>
+          <span style="min-width:92px;">rajbuavn66@gmail.com</span>
+        </a>
+
+        <!-- LinkedIn -->
+        <a class="icon-btn" href="https://www.linkedin.com/in/buvanraj-v" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+          <i class="fa-brands fa-linkedin"></i>
+          <span style="min-width:78px;">LinkedIn</span>
+        </a>
+
+        <!-- GitHub -->
+        <a class="icon-btn" href="https://github.com/Buvan-Buddu" target="_blank" rel="noopener noreferrer" title="GitHub">
+          <i class="fa-brands fa-github"></i>
+          <span style="min-width:68px;">GitHub</span>
+        </a>
+      </div>
+
+      <div class="subtitle">About me</div>
+      <p class="about">
+        Hello — I'm Buvanraj, a student at R.M.K. Engineering College with a passion for building clean, modern web experiences.
+        I focus on front-end design, responsive layouts and bringing subtle glowing aesthetics to interfaces.
+      </p>
+
+      <div class="foot" aria-hidden="true">
+        <span><i class="fa-regular fa-circle-play" style="opacity:.7"></i></span>
+        <span style="opacity:.6">OPEN TO WORK</span>
+        <span>♥</span>
+      </div>
+    </section>
+
+    <aside class="right" aria-label="Profile card">
+      <div class="avatar" aria-hidden="true">BV</div>
+
+      <div style="text-align:center">
+        <div class="badge">Student • Web Enthusiast</div>
+        <h3 style="margin:10px 0 2px 0;font-size:18px;color:#fff">BUVANRAJ V</h3>
+        <div style="color:var(--muted);font-size:13px;margin-bottom:8px">R.M.K. Engineering College</div>
+
+        <!-- Resume download (sample) -->
+        <a class="resume-btn" href="R1PDF.pdf"  title="Download Resume (sample)">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          <span>Download Resume</span>
+        </a>
+
+        <div style="margin-top:12px;color:var(--muted);font-size:13px"></div>
+      </div>
+    </aside>
+  </main>
+</body>
+</html>
